@@ -13,14 +13,15 @@ public class MoneyRavenApplication {
   }
 }
 /**
- В стартерах все есть, и конфликтов версий нет
- 'org.springframework.boot:spring-boot-starter-web'
- 'org.springframework.boot:spring-boot-starter-data-jpa'
- 'com.h2database:h2'
+ spring.factories
+ В этом файле мы прописываем, какая конфигурация у этого стартера должна быть активизирована у всех, кто его подгрузил.
+ Spring Boot — в какой-то момент он начинает сканировать все jar-ы и искать файл spring.factories.
+ org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.ironbank.IronConfiguration
 
- Раньше был контекст, передавали файлы настройки, а в Буте иначе - он помечен мощной аннотацией @SpringBootApplication.
- SpringApplication - Карлсон
- Он делает только два вида контекста: либо web-контекст (WebApplicationContext) (если в classpath есть Servlet+ConfigurableWebApplicationContext), либо дженерик-контекст (AnnotationConfigApplicationContext).
- Уже сразу почти 500 бинов есть в SpringApplication после подключения 3-4 стартеров
- run.getBeanDefinitionName()
+ @SpringBootApplication
+ @Configuration, то есть это конфигурация. Там можно написать @Bean и как обычно прописывать бины.
+ @ComponentScan. По умолчанию он сканирует абсолютно все пакеты и подпакеты. Соответственно, если вы в том же пакете или в его подпакетах начинаете создавать сервисы — @Service, @RestController — они автоматически сканируются, поскольку процесс сканирования запускает ваша главная конфигурация.
+ @EnableAutoConfiguration. Именно этот класс был прописан в spring.factories.
+ Он несет с собой @Import. ImportSelector протаскивает все наши стартеры в контекст.  Он обрабатывает аннотацию @EnableAutoConfiguration из spring.factories, которая выбирает, какие конфигурации загрузить, и добавляет в контекст те бины, которые мы прописали в IronConfiguration.
+ Есть зависимость org.springframework.boot:spring-boot-autoconfigure(jar самого Spring Boot). В ней подключено 90 конфигураций. Они бы загружались, если бы не @Conditional. Из-за него бины либо создаются, либо нет.
  */
