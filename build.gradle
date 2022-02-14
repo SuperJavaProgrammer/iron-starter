@@ -62,6 +62,7 @@ configure(rootProject) {
 subprojects {
   dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor' //для того, чтобы @ConfigurationProperties работал
   }
 }
 
