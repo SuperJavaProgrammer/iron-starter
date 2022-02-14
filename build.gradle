@@ -49,7 +49,7 @@ configure(rootProject) {
     compile 'org.springframework.data:spring-data-rest-hal-browser'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.flywaydb:flyway-core'
-
+    compile project(':iron-starter') //добавили iron-starter
     runtime 'com.h2database:h2'
 
     compileOnly 'org.projectlombok:lombok'
