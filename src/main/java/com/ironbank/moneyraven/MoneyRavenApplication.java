@@ -4,28 +4,22 @@ import com.ironbank.moneyraven.model.ProphetProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
+
+import java.time.LocalTime;
 
 @SpringBootApplication
 @EnableConfigurationProperties(ProphetProperties.class)
 public class MoneyRavenApplication {
+  @Bean
+  public ApplicationListener ironListener() { //специально создаем бин ironListener, чтобы отработала аннотация @ConditionalOnMissingBean
+      return (event -> System.out.println(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond() + " event = " + event));
+  }
   public static void main(String[] args) {
     SpringApplication.run(MoneyRavenApplication.class, args);
   }
 }
 /**
- Данные в файлах application.properties и application.yml
- Удобные аннотации для фильтрации условий:
- @ConditionalOnBean
- @ConditionalOnClass
- @ConditionalOnCloudPlatform
- @ConditionalOnExpression
- @ConditionalOnJava
- @ConditionalOnJndi
- @ConditionalOnMissingBean
- @ConditionalOnMissingClass
- @ConditionalOnNotWebApplication
- @ConditionalOnProperty //это подходит
- @ConditionalOnResource
- @ConditionalOnSingleCandidate
- @ConditionalOnWebApplication
+
  */
