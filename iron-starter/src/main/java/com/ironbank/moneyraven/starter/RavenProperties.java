@@ -8,5 +8,6 @@ import java.util.List;
 @Data
 @ConfigurationProperties("crow") //брать настройки по значению "crow", кириллица не работает
 public class RavenProperties {
+  boolean include;
   List<String> where; //получить и заполнить список всех значений "where"
 }
