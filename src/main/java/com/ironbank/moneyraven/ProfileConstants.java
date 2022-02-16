@@ -1,6 +1,6 @@
 package com.ironbank.moneyraven;
 
 public interface ProfileConstants {
-  String ЗИМА_БЛИЗКО = "зимаБлизко";
-  String ЗИМА_ТУТА = "зимаТута";
+  String WINTER_CLOSE = "winterClose";
+  String WINTER_HERE = "winterHere";
 }

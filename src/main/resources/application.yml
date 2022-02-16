@@ -1,10 +1,13 @@
 spring:
   application.name: money-raven
   jpa.hibernate.ddl-auto: validate
+#  profiles.active: winterHere #активировать профиль winterHere/winterClose, иначе default
 
 ironbank:
   те-кто-возвращают-долги:
     - Ланистеры
+    - Санса
+    - Геракл
 
 crow:
   where: браавос, главный банк
